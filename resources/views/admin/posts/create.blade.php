@@ -44,6 +44,18 @@
      @enderror
     </div>
 
+    <div class="form-group my-3">
+
+      @foreach ($tags as $tag)
+        <input type="checkbox"
+        name="tags[]"
+        id="tag{{ $loop->iteration }}"
+        value="{{ $tag->id }}">
+        <label class="mr-3 mt-2" for="tag{{ $loop->iteration }}">{{$tag->name}}</label>       
+      @endforeach
+
+    </div>
+
     <button type="submit" class="btn btn-primary">Submit</button>
   </form>
 </div>
