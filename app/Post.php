@@ -7,6 +7,12 @@ use Illuminate\Database\Eloquent\Model;
 
 class Post extends Model
 {
+
+    public function tags(){
+        return $this->belongsToMany('App\Tag');
+    }
+
+    
     public static function SlugGen($title){
         $slug = Str::slug($title, '-');
         $base_slug = $slug;
