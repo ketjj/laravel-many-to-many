@@ -8,6 +8,7 @@
         <tr>
           <th class="k_head one">ID</th>
           <th class="k_head two">Title</th>
+          <th class="k_head two">Tags</th>
           <th class="k_head three">Actions</th>
 
         </tr>
@@ -18,6 +19,14 @@
           <tr>
               <td> {{$post->id}}</td>
               <td> {{$post->title}}</td>
+              <td>
+                @forelse($post->tags as $tag)
+                  <span class="badge badge-info">{{ $tag->name }}</span>                 
+                @empty 
+                  - 
+                @endforelse
+              
+              </td>
               <td>
                  <a href="{{ route('admin.posts.show', $post) }}" class="btn btn-warning k_button">SHOW</a>
                   <a href="{{ route('admin.posts.edit', $post)}}" class="btn btn-info k_button">EDIT</a> 
