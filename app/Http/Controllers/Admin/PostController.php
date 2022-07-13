@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers\Admin;
 use App\Post;
+use App\Tag;
 use App\Http\Requests\PostRequest;
 
 use App\Http\Controllers\Controller;
-use App\Tag;
 use Illuminate\Http\Request;
 
 class PostController extends Controller
@@ -100,8 +100,13 @@ class PostController extends Controller
         }
 
         $post->update($data);
+        $post->save();
 
-        return redirect()->route('admin.posts.show', $post);
+        if($request->tags == Null){
+            $post->tag()->sync($data['tags']);
+        }
+
+        return redirect()->route('admin.posts.index');
     }
 
     /**

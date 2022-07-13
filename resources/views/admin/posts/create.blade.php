@@ -6,6 +6,7 @@
 
   {{-- @if($errors->any()).....@foreach($errors->all() as $error..../@endforeach...@endif --}}
   <form action="{{ route('admin.posts.store')}}" method="POST">
+    
     @csrf
     
     <div class="form-group my-3">
@@ -50,7 +51,8 @@
         <input type="checkbox"
         name="tags[]"
         id="tag{{ $loop->iteration }}"
-        value="{{ $tag->id }}">
+        value="{{ $tag->id }}"
+        @if (in_array($tag->id, old('tags', []))) checked @endif>
         <label class="mr-3 mt-2" for="tag{{ $loop->iteration }}">{{$tag->name}}</label>       
       @endforeach
 
